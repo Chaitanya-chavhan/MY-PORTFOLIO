@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chaitanya Chavhan | Fullstack Developer</title>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
+        
+        body {
+            font-family: 'Plus+Jakarta+Sans', sans-serif;
+            background-color: #4a0000;
+            color: white;
+            scroll-behavior: smooth;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px border rgba(255, 255, 255, 0.1);
+        }
+
+        .glass-white {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            color: #4a0000;
+        }
+
+        .text-gradient {
+            background: linear-gradient(to right, #ffffff, #ffcccc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #330000;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        const App = () => {
+            const [isScrolled, setIsScrolled] = useState(false);
+
+            useEffect(() => {
+                const handleScroll = () => setIsScrolled(window.scrollY > 50);
+                window.addEventListener('scroll', handleScroll);
+                return () => window.removeEventListener('scroll', handleScroll);
+            }, []);
+
+            const skills = [
+                { name: 'MongoDB', icon: 'fa-database', cat: 'Backend' },
+                { name: 'Express JS', icon: 'fa-server', cat: 'Backend' },
+                { name: 'React', icon: 'fa-code', cat: 'Frontend' },
+                { name: 'Node JS', icon: 'fa-terminal', cat: 'Backend' },
+                { name: 'JavaScript', icon: 'fa-js', cat: 'Language' },
+                { name: 'HTML', icon: 'fa-html5', cat: 'Frontend' },
+                { name: 'Tailwind CSS', icon: 'fa-wind', cat: 'Design' },
+                { name: 'Firebase', icon: 'fa-fire', cat: 'Cloud' },
+                { name: 'REST APIs', icon: 'fa-link', cat: 'Backend' },
+                { name: 'Vibe Coding', icon: 'fa-bolt', cat: 'Methodology' },
+                { name: 'AI Integration', icon: 'fa-robot', cat: 'Intelligence' },
+                { name: 'Python', icon: 'fa-brands fa-python', cat: 'Language' }
+            ];
+
+            const projects = [
+                {
+                    title: "NTA Wallah NEET Academy",
+                    url: "https://ntawallahneetacademy.netlify.app",
+                    desc: "An educational ecosystem for NEET aspirants with integrated resource management.",
+                    tags: ["EdTech", "MERN", "NEET"]
+                },
+                {
+                    title: "SkyNexus Studio",
+                    url: "https://skynexus-studio.netlify.app",
+                    desc: "Creative agency platform showcasing high-end digital design services.",
+                    tags: ["Studio", "UI/UX", "Modern"]
+                },
+                {
+                    title: "NEETxPaper",
+                    url: "https://neetxpaper-skylord.netlify.app",
+                    desc: "Dynamic question paper generator with custom filtration for medical students.",
+                    tags: ["Tools", "Automation", "Education"]
+                },
+                {
+                    title: "NEETxRT",
+                    url: "https://neetxrt-skylord.netlify.app",
+                    desc: "Real-time performance tracking and analytical dashboard for NEET preparation.",
+                    tags: ["Analytics", "Real-time", "Dashboard"]
+                },
+                {
+                    title: "NEET Test Hub",
+                    url: "https://neettesthub.netlify.app",
+                    desc: "Centralized testing environment featuring automated exam cycles and result tracking.",
+                    tags: ["Testing", "Hub", "Node.js"]
+                }
+            ];
+
+            return (
+                <div className="relative min-h-screen">
+                    {/* Background Gradient Orbs */}
+                    <div className="fixed inset-0 pointer-events-none z-0">
+                        <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-red-900 rounded-full blur-[150px] opacity-30"></div>
+                        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-red-800 rounded-full blur-[150px] opacity-20"></div>
+                    </div>
+
+                    {/* Navigation */}
+                    <nav className={`fixed top-0 w-full z-50 transition-all duration-500 ${isScrolled ? 'py-4 bg-[#4a0000]/80 backdrop-blur-xl border-b border-white/5 shadow-2xl' : 'py-8 bg-transparent'}`}>
+                        <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+                            <div className="flex items-center gap-3">
+                                <div className="w-10 h-10 bg-white text-[#4a0000] rounded-xl flex items-center justify-center font-black text-xl shadow-lg">CC</div>
+                                <span className="text-[10px] tracking-[0.4em] uppercase font-bold opacity-40 hidden sm:block">Portfolio 2026</span>
+                            </div>
+                            <div className="flex items-center space-x-4 md:space-x-10 text-[11px] font-bold uppercase tracking-widest">
+                                <a href="#about" className="hover:text-white/60 transition-colors">About</a>
+                                <a href="#skills" className="hover:text-white/60 transition-colors">Skills</a>
+                                <a href="#projects" className="hover:text-white/60 transition-colors">Works</a>
+                                <a href="#contact" className="px-6 py-2 bg-white text-[#4a0000] rounded-full hover:scale-105 transition-all">Contact</a>
+                            </div>
+                        </div>
+                    </nav>
+
+                    {/* Hero Section */}
+                    <section className="relative min-h-screen flex items-center justify-center pt-20 px-6">
+                        <div className="text-center z-10 max-w-4xl">
+                            <div className="inline-block px-4 py-2 rounded-full glass border border-white/10 text-[10px] font-bold uppercase tracking-[0.3em] mb-8 text-white/70">
+                                <i className="fas fa-circle text-green-400 mr-2 text-[8px] animate-pulse"></i>
+                                Available for AI & Web Projects
+                            </div>
+                            <h1 className="text-5xl md:text-8xl font-extrabold mb-8 tracking-tighter leading-tight">
+                                Fullstack <br />
+                                <span className="text-gradient">Innovation.</span>
+                            </h1>
+                            <p className="text-lg md:text-xl text-white/60 mb-12 max-w-2xl mx-auto font-medium leading-relaxed italic">
+                                "18-year-old developer specializing in EdTech, AI Integration, and the art of Vibe Coding. Bridging the gap between medicine and technology."
+                            </p>
+                            <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+                                <a href="#projects" className="px-10 py-5 bg-white text-[#4a0000] rounded-2xl font-black uppercase tracking-widest text-xs shadow-2xl hover:bg-red-50 transition-all flex items-center gap-3">
+                                    View Projects <i className="fas fa-arrow-right"></i>
+                                </a>
+                                <div className="flex gap-4">
+                                    <a href="#" className="w-14 h-14 glass rounded-2xl flex items-center justify-center hover:bg-white/10 transition-all border border-white/10"><i className="fab fa-github text-xl"></i></a>
+                                    <a href="#" className="w-14 h-14 glass rounded-2xl flex items-center justify-center hover:bg-white/10 transition-all border border-white/10"><i className="fab fa-linkedin text-xl"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Skills Section */}
+                    <section id="skills" className="py-32 px-6 glass border-y border-white/5 relative z-10">
+                        <div className="max-w-6xl mx-auto">
+                            <div className="flex flex-col items-center mb-20">
+                                <h2 className="text-4xl font-black uppercase tracking-tighter mb-4">Core Arsenal</h2>
+                                <div className="h-1 w-12 bg-white rounded-full"></div>
+                            </div>
+                            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                                {skills.map((skill, i) => (
+                                    <div key={i} className="skill-card p-6 rounded-[2rem] glass border border-white/5 text-center transition-all group">
+                                        <div className="mb-4 text-white/30 group-hover:text-white transition-colors duration-300">
+                                            <i className={`fas ${skill.icon} text-2xl`}></i>
+                                        </div>
+                                        <h3 className="text-[11px] font-black uppercase tracking-widest mb-1">{skill.name}</h3>
+                                        <div className="text-[9px] text-white/30 uppercase font-bold">{skill.cat}</div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Projects Section */}
+                    <section id="projects" className="py-32 px-6 relative z-10">
+                        <div className="max-w-6xl mx-auto">
+                            <h2 className="text-3xl font-black uppercase tracking-tight mb-16 border-l-4 border-white pl-6">Production Ready Works</h2>
+                            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                                {projects.map((p, i) => (
+                                    <div key={i} className="group p-8 rounded-[3rem] glass border border-white/5 hover:border-white/20 transition-all flex flex-col h-full">
+                                        <div className="flex justify-between items-start mb-8">
+                                            <div className="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center border border-white/10">
+                                                <i className="fas fa-laptop-code text-white/40"></i>
+                                            </div>
+                                            <a href={p.url} target="_blank" className="w-10 h-10 bg-white text-[#4a0000] rounded-xl flex items-center justify-center hover:scale-110 transition-all shadow-xl">
+                                                <i className="fas fa-external-link-alt text-sm"></i>
+                                            </a>
+                                        </div>
+                                        <h3 className="text-xl font-black mb-4 uppercase tracking-tight">{p.title}</h3>
+                                        <p className="text-white/50 text-sm mb-8 leading-relaxed font-medium flex-grow">{p.desc}</p>
+                                        <div className="flex flex-wrap gap-2">
+                                            {p.tags.map((t, j) => (
+                                                <span key={j} className="px-3 py-1 bg-white/5 rounded-full text-[9px] font-black uppercase tracking-widest text-white/60 border border-white/5">{t}</span>
+                                            ))}
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* About Section (Condensed) */}
+                    <section id="about" className="py-32 px-6">
+                        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+                            <div className="p-12 rounded-[4rem] glass border border-white/10 text-center">
+                                <div className="text-[10rem] font-black opacity-5 leading-none">18</div>
+                                <div className="mt-[-4rem]">
+                                    <h3 className="text-2xl font-black uppercase mb-4">The Journey</h3>
+                                    <p className="text-white/60 leading-relaxed italic">"From mastering the MERN stack to scaling physical peaks in the Himalayas, I believe in absolute commitment to the craft."</p>
+                                </div>
+                            </div>
+                            <div className="space-y-6">
+                                <div className="p-8 rounded-3xl glass border border-white/5">
+                                    <div className="flex items-center gap-4 mb-3">
+                                        <i className="fas fa-user-md text-white/40"></i>
+                                        <h4 className="font-black uppercase text-sm tracking-widest">NEET Aspirant</h4>
+                                    </div>
+                                    <p className="text-white/50 text-sm">Combining medical logic with code execution.</p>
+                                </div>
+                                <div className="p-8 rounded-3xl glass border border-white/5">
+                                    <div className="flex items-center gap-4 mb-3">
+                                        <i className="fas fa-mountain text-white/40"></i>
+                                        <h4 className="font-black uppercase text-sm tracking-widest">Mountaineer</h4>
+                                    </div>
+                                    <p className="text-white/50 text-sm">Always aiming for the next highest elevation.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Contact Section */}
+                    <section id="contact" className="py-32 px-6 relative z-10">
+                        <div className="max-w-4xl mx-auto">
+                            <div className="glass-white p-12 md:p-20 rounded-[4rem] text-center shadow-[0_0_80px_rgba(0,0,0,0.5)]">
+                                <h2 className="text-4xl md:text-6xl font-black mb-6 tracking-tighter uppercase italic">Start the vibe.</h2>
+                                <p className="text-[#4a0000]/60 mb-12 font-bold uppercase tracking-[0.2em] text-sm">Open for serious development inquiries & AI implementation.</p>
+                                
+                                <div className="flex flex-col items-center gap-6">
+                                    <a href="mailto:chaitanyachavhan031@gmail.com" className="group w-full bg-[#4a0000] text-white p-8 rounded-[3rem] transition-all hover:scale-[1.02] shadow-2xl flex flex-col items-center gap-2">
+                                        <span className="text-[10px] font-black uppercase tracking-[0.4em] opacity-40">Direct Connection</span>
+                                        <span className="text-lg md:text-2xl font-black break-all">chaitanyachavhan031@gmail.com</span>
+                                    </a>
+                                    
+                                    <div className="flex gap-6 pt-6">
+                                        <a href="#" className="text-2xl hover:scale-125 transition-all"><i className="fab fa-github"></i></a>
+                                        <a href="#" className="text-2xl hover:scale-125 transition-all"><i className="fab fa-twitter"></i></a>
+                                        <a href="#" className="text-2xl hover:scale-125 transition-all"><i className="fab fa-linkedin"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Footer */}
+                    <footer className="py-20 text-center border-t border-white/5">
+                        <div className="max-w-7xl mx-auto px-6">
+                            <div className="w-10 h-10 bg-white text-[#4a0000] rounded-xl flex items-center justify-center font-black text-xl mx-auto mb-8">CC</div>
+                            <p className="text-white/20 text-[10px] tracking-[0.6em] uppercase font-black">Chaitanya Chavhan • Crafted for performance</p>
+                            <div className="mt-8 flex justify-center gap-6 text-[9px] font-bold uppercase tracking-widest opacity-20">
+                                <span>React v18</span>
+                                <span>Tailwind CSS</span>
+                                <span>Zero Build Step</span>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
